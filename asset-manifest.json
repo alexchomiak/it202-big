@@ -1,10 +1,10 @@
 {
   "main.css": "/it202-big/static/css/main.9fcd074f.chunk.css",
-  "main.js": "/it202-big/static/js/main.78cecf86.chunk.js",
+  "main.js": "/it202-big/static/js/main.8f00ffa2.chunk.js",
   "runtime~main.js": "/it202-big/static/js/runtime~main.a19c4f5b.js",
-  "static/js/2.600eecd0.chunk.js": "/it202-big/static/js/2.600eecd0.chunk.js",
+  "static/js/2.2d26bbff.chunk.js": "/it202-big/static/js/2.2d26bbff.chunk.js",
   "index.html": "/it202-big/index.html",
-  "precache-manifest.f4f2b0b379ab638b33da613b67c31049.js": "/it202-big/precache-manifest.f4f2b0b379ab638b33da613b67c31049.js",
+  "precache-manifest.54c950ac3c74c7bf3474cf0ad3e40a4b.js": "/it202-big/precache-manifest.54c950ac3c74c7bf3474cf0ad3e40a4b.js",
   "service-worker.js": "/it202-big/service-worker.js",
   "static/media/logo.svg": "/it202-big/static/media/logo.5d5d9eef.svg"
 }
