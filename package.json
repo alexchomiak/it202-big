@@ -31,14 +31,7 @@
   ],
   "gh-pages-deploy": {
     "staticpath": "public",
-    "prep": [
-      "build-sass",
-      "optimize-img"
-    ],
-    "commit": "gh pages deploy",
-    "post": [
-      "clean-source"
-    ],
-    "noprompt": false
+    "commit": "gh pages deploy"
+
   }
 }
