@@ -40,7 +40,7 @@ class App extends Component {
               }
               
               //throw "fuck"
-               return (<Redirect to="/search"/>)
+               return (<Redirect to= {process.env.PUBLIC_URL + "/search"}/>)
             }}/>
 
           ) : (
