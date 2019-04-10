@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "gh-pages": "^2.0.1",
     "node-sass": "^4.11.0",
     "query-string": "^6.4.2",
     "react": "^16.8.6",
@@ -11,7 +12,7 @@
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
     "spotify-web-api-js": "^1.2.0",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
   },
   "scripts": {
     "start": "react-scripts start",
@@ -27,5 +28,17 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "gh-pages-deploy": {
+    "staticpath": "public",
+    "prep": [
+      "build-sass",
+      "optimize-img"
+    ],
+    "commit": "gh pages deploy",
+    "post": [
+      "clean-source"
+    ],
+    "noprompt": false
+  }
 }
