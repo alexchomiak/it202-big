@@ -54,15 +54,14 @@ export default class Home extends Component {
                     scope:"user-read-private user-read-email playlist-modify-public playlist-modify-private ugc-image-upload",
                     state: "123"
                 })
-               url =  "https%3A%2F%2Falexchomiak.github.io%2Fit202-big%2Fcallback"
 
            
              } 
 
 
-            var loginURL = "https://accounts.spotify.com/authorize?client_id=d1a2f3a8c7b0428ab9c14b1c175cbc69&redirect_uri=" + "http%3A%2F%2Flocalhost:3000%2Fcallback" + "&scope=user-read-private%20user-read-email%20playlist-modify-public%20playlist-modify-private%20ugc-image-upload&response_type=token&state=123"
+            //var loginURL = "https://accounts.spotify.com/authorize?client_id=d1a2f3a8c7b0428ab9c14b1c175cbc69&redirect_uri=" + "http%3A%2F%2Flocalhost:3000%2Fcallback" + "&scope=user-read-private%20user-read-email%20playlist-modify-public%20playlist-modify-private%20ugc-image-upload&response_type=token&state=123"
 
-            //loginURL = url;
+            var loginURL = url;
             this.setState({loginURL})
     
         }
@@ -263,7 +262,7 @@ export default class Home extends Component {
         event.preventDefault();
     
 
-        this.createPlaylistFromTopTrackFrequencies(event.target.keyword.value,50,true)
+        this.createPlaylistFromTopTrackFrequencies(event.target.keyword.value,50)
     }
 
 
