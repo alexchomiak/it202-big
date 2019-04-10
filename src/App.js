@@ -31,7 +31,7 @@ class App extends Component {
       <Router>
         <div>
           { window.location.href.includes("access_token") ? (
-            <Route  path={ process.env.PUBLIC_URL + "/"} component={() => {
+            <Route  exact path={ process.env.PUBLIC_URL + "/"} component={() => {
               console.log("public " + process.env.PUBLIC_URL)
               const params = getHashParams()
 
@@ -40,14 +40,16 @@ class App extends Component {
               }
               
               //throw "fuck"
-               return (<Home userCode={this.state.userCode}/>)
+               return (<Redirect to="/search"/>)
             }}/>
 
           ) : (
 
-            <Route  path={ process.env.PUBLIC_URL + "/"} component={() => (<Home userCode={this.state.userCode}/>)}/>
+            <Route  exact path={ process.env.PUBLIC_URL + "/"} component={() => (<Home userCode={this.state.userCode}/>)}/>
 
           )}
+
+          <Route exact path={process.env.PUBLIC_URL + "/search"} component={() => (<Home userCode={this.state.userCode}/>)} />
         
           
           
