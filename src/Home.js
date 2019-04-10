@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react'
 import {Redirect} from 'react-router-dom'
 import Spotify from 'spotify-web-api-js'
@@ -257,6 +258,22 @@ export default class Home extends Component {
         })
     }
 
+    getPlaylists = async (name,limit) => {
+        var initialValue = 0;
+        var promises = []
+        var list = [];
+
+        for(var i = 0; i < limit; i += 50){
+            promises.push( spotifyApi.searchPlaylists(name,{limit: 50,offset: i}).then((res) => {
+                list = [...list, ...res.playlists.items]
+            }))
+        }
+       
+
+        return Promise.all(promises).then(() => {
+            return list
+        })
+    }
 
     handleSubmit = (event) => {
         if(this.state.progress.value != this.state.progress.max) return
@@ -311,3 +328,5 @@ export default class Home extends Component {
   }
 }
 
+        
+    

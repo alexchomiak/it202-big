@@ -30,7 +30,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-        <Route exact path={ process.env.PUBLIC_URL + "/callback"} component={() => {
+        <Route  path={ process.env.PUBLIC_URL + "/callback"} component={() => {
             console.log("public " + process.env.PUBLIC_URL)
 
             const params = getHashParams()
@@ -42,7 +42,7 @@ class App extends Component {
             //throw "fuck"
              return (<Redirect to={{pathname: process.env.PUBLIC_URL + "/", from: this.props.location}}/>)
           }}/>
-          <Route exact path={ process.env.PUBLIC_URL + "/"} component={() => (<Home userCode={this.state.userCode}/>)}/>
+          <Route  path={ process.env.PUBLIC_URL + "/"} component={() => (<Home userCode={this.state.userCode}/>)}/>
           
           </div>
     
