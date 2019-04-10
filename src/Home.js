@@ -63,6 +63,7 @@ export default class Home extends Component {
 
             var loginURL = url;
             this.setState({loginURL})
+           
     
         }
        
@@ -260,9 +261,8 @@ export default class Home extends Component {
     handleSubmit = (event) => {
         if(this.state.progress.value != this.state.progress.max) return
         event.preventDefault();
-    
 
-        this.createPlaylistFromTopTrackFrequencies(event.target.keyword.value,50)
+        this.createPlaylistFromTopTrackFrequencies(event.target.keyword.value,100)
     }
 
 
