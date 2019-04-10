@@ -39,7 +39,7 @@ export default class Home extends Component {
             if (process.env.PUBLIC_URL === "") {
                 //url = "http%3A%2F%2Flocalhost:3000%2Fcallback"
                 url += queryString.stringify({
-                    redirect_uri: "http://localhost:3000/callback",
+                    redirect_uri: "http://localhost:3000",
                     response_type: "token",
                     client_id: clientToken,
                     scope:"user-read-private user-read-email playlist-modify-public playlist-modify-private ugc-image-upload",
@@ -49,7 +49,7 @@ export default class Home extends Component {
              } 
              else {
                 url += queryString.stringify({
-                    redirect_uri: "https://alexchomiak.github.io/it202-big/callback",
+                    redirect_uri: "https://alexchomiak.github.io/it202-big",
                     response_type: "token",
                     client_id: clientToken,
                     scope:"user-read-private user-read-email playlist-modify-public playlist-modify-private ugc-image-upload",

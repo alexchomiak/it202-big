@@ -30,19 +30,26 @@ class App extends Component {
     return (
       <Router>
         <div>
-        <Route  path={ process.env.PUBLIC_URL + "/callback"} component={() => {
-            console.log("public " + process.env.PUBLIC_URL)
+          { window.location.href.includes("access_token") ? (
+            <Route  path={ process.env.PUBLIC_URL + "/"} component={() => {
+              console.log("public " + process.env.PUBLIC_URL)
+              const params = getHashParams()
 
-            const params = getHashParams()
-            console.log(params)
-            if(params.access_token !== null) {
-              this.setState({userCode: params})
-            }
-            var x
-            //throw "fuck"
-             return (<Redirect to={{pathname: process.env.PUBLIC_URL + "/", from: this.props.location}}/>)
-          }}/>
-          <Route  path={ process.env.PUBLIC_URL + "/"} component={() => (<Home userCode={this.state.userCode}/>)}/>
+              if(this.state.userCode === null) {
+                this.setState(() => ({userCode: params}))
+              }
+              
+              //throw "fuck"
+               return (<Home userCode={this.state.userCode}/>)
+            }}/>
+
+          ) : (
+
+            <Route  path={ process.env.PUBLIC_URL + "/"} component={() => (<Home userCode={this.state.userCode}/>)}/>
+
+          )}
+        
+          
           
           </div>
     
