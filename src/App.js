@@ -24,26 +24,26 @@ class App extends Component {
 
   
   componentDidMount() {
-    
   }
 
   render() {
     return (
       <Router>
-        <Switch>
-          <Route exact path="/" component={() => (<Home userCode={this.state.userCode}/>)}/>
-          <Route exact path="/callback" component={() => {
-            
-            console.log(window.location.href)
+        <div>
+          <Route exact path={ process.env.PUBLIC_URL + "/"} component={() => (<Home userCode={this.state.userCode}/>)}/>
+          <Route exact path={ process.env.PUBLIC_URL + "/callback"} component={() => {
+            console.log("public " + process.env.PUBLIC_URL)
+
             const params = getHashParams()
             console.log(params)
             if(params.access_token !== null) {
               this.setState({userCode: params})
             }
-            
-            return(<Redirect to={{pathname:"/", from: this.props.location}}/>)
+            var x
+            //throw "fuck"
+             return (<Redirect to={{pathname: process.env.PUBLIC_URL + "/", from: this.props.location}}/>)
           }}/>
-      </Switch>
+          </div>
     
       </Router>
       

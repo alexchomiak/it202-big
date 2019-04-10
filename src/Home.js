@@ -3,8 +3,9 @@ import {Redirect} from 'react-router-dom'
 import Spotify from 'spotify-web-api-js'
 import axios from 'axios'
 import SpotifyWebApi from 'spotify-web-api-js';
+const queryString = require('query-string')
+
 const uuid = require('uuid/v4')
-const loginURL = "https://accounts.spotify.com/authorize?client_id=d1a2f3a8c7b0428ab9c14b1c175cbc69&redirect_uri=http%3A%2F%2Flocalhost:3000%2Fcallback&scope=user-read-private%20user-read-email%20playlist-modify-public%20playlist-modify-private%20ugc-image-upload&response_type=token&state=123"
 const clientToken = "d1a2f3a8c7b0428ab9c14b1c175cbc69"
 
 const base64cover = 
@@ -25,11 +26,48 @@ export default class Home extends Component {
         progress: {
             value: 100,
             max: 100
-        }
+        },
+        loginURL: null
     }
 
 
     componentDidMount() {
+        if(this.props.userCode === null) {
+            var url = "https://accounts.spotify.com/authorize?"
+            
+            if (process.env.PUBLIC_URL === "") {
+                //url = "http%3A%2F%2Flocalhost:3000%2Fcallback"
+                url += queryString.stringify({
+                    redirect_uri: "http://localhost:3000/callback",
+                    response_type: "token",
+                    client_id: clientToken,
+                    scope:"user-read-private user-read-email playlist-modify-public playlist-modify-private ugc-image-upload",
+                    state: "123"
+                })
+              
+             } 
+             else {
+                url += queryString.stringify({
+                    redirect_uri: "https://alexchomiak.github.io/it202-big/callback",
+                    response_type: "token",
+                    client_id: clientToken,
+                    scope:"user-read-private user-read-email playlist-modify-public playlist-modify-private ugc-image-upload",
+                    state: "123"
+                })
+               url =  "https%3A%2F%2Falexchomiak.github.io%2Fit202-big%2Fcallback"
+
+           
+             } 
+
+
+            var loginURL = "https://accounts.spotify.com/authorize?client_id=d1a2f3a8c7b0428ab9c14b1c175cbc69&redirect_uri=" + "http%3A%2F%2Flocalhost:3000%2Fcallback" + "&scope=user-read-private%20user-read-email%20playlist-modify-public%20playlist-modify-private%20ugc-image-upload&response_type=token&state=123"
+
+            //loginURL = url;
+            this.setState({loginURL})
+    
+        }
+       
+
         if(this.props.userCode !== null) {
             spotifyApi.setAccessToken(this.props.userCode.access_token)
 
@@ -231,7 +269,7 @@ export default class Home extends Component {
 
 
     render() {
-        if(this.props.userCode === null) window.location.href = loginURL
+        if(this.state.loginURL !== null && this.props.userCode === null) window.location.href = this.state.loginURL
 
 
     return (
