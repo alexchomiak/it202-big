@@ -285,7 +285,7 @@ export default class Home extends Component {
 
 
     render() {
-        if(this.state.loginURL !== null && this.props.userCode === null) window.location.href = this.state.loginURL
+        //if(this.state.loginURL !== null && this.props.userCode === null) window.location.href = this.state.loginURL
 
 
     return (
@@ -317,7 +317,7 @@ export default class Home extends Component {
 
           </div>)
           : <div className="failure">
-            
+            <a href={this.state.loginURL}> login </a>
             Attempting to login to spotify!
 
           </div>
