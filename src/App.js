@@ -39,8 +39,8 @@ class App extends Component {
     user: null
   }
   
-  access_token = localStorage['accesstoken']
-  componentDidMount() {
+  constructor() {
+    super()
     var loginURL
 
     console.log(this.access_token)
@@ -106,6 +106,11 @@ class App extends Component {
     
   }
  
+  }
+
+  access_token = localStorage['accesstoken']
+  componentDidMount() {
+    
   }
   
   componentDidUpdate() {
@@ -192,7 +197,7 @@ class App extends Component {
           
 
 
-          <Route exact path={"/search"} component={() => (<Home userCode={this.state.userCode}/>)} />
+         
         
           
           
