@@ -108,7 +108,7 @@ class App extends Component {
  
   }
 
-  access_token = localStorage['accesstoken']
+  access_token = document.cookie
   componentDidMount() {
     
   }
@@ -175,7 +175,7 @@ class App extends Component {
               const params = getHashParams()
               if(this.state.userCode === null) {
                 this.access_token = params.access_token
-                localStorage['accesstoken'] = params.access_token;
+                document.cookie = params.access_token
                 console.log(params)
                 this.setState(() => ({userCode: params.access_token}))
               }
