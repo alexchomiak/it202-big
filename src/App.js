@@ -11,6 +11,9 @@ import QueryBuilder from './QueryBuilder';
 import Header from './Header'
 import NavBar from './NavBar'
 
+var access_token = localStorage.getItem('token')
+
+
 var spotifyApi = new Spotify()
 const queryString = require('query-string')
 const clientToken = "d1a2f3a8c7b0428ab9c14b1c175cbc69"
@@ -43,8 +46,8 @@ class App extends Component {
     super()
     var loginURL
 
-    console.log(this.access_token)
-    if(this.access_token === '' || this.access_token === undefined || this.access_token === null) {
+    console.log(access_token)
+    if(access_token === '' || access_token === undefined || access_token === null) {
       var url = "https://accounts.spotify.com/authorize?"
       
       if (process.env.PUBLIC_URL === "") {
@@ -84,7 +87,7 @@ class App extends Component {
   }
   else {
   
-      spotifyApi.setAccessToken(this.access_token)
+      spotifyApi.setAccessToken(access_token)
       spotifyApi.getMe().then((me) => {
         this.setState(() => ({
             user: me
@@ -98,7 +101,7 @@ class App extends Component {
        
       
     },(err) => {
-      localStorage['accesstoken'] = ''
+      localStorage.setItem('token','')
       window.location.replace(loginURL);
     })
 
@@ -108,7 +111,7 @@ class App extends Component {
  
   }
 
-  access_token = document.cookie
+
   componentDidMount() {
     
   }
@@ -174,8 +177,8 @@ class App extends Component {
             <Route  exact path={"/"} component={() => {
               const params = getHashParams()
               if(this.state.userCode === null) {
-                this.access_token = params.access_token
-                document.cookie = params.access_token
+                access_token = params.access_token
+                localStorage.setItem("token",params.access_token)
                 console.log(params)
                 this.setState(() => ({userCode: params.access_token}))
               }
@@ -186,7 +189,7 @@ class App extends Component {
 
             <div>
               {
-              <Route  exact path={ "/"} component={() => (<h1>home</h1>)}/>  
+              <Route  exact path={ "/"} component={() => (<h1>home {access_token}</h1>)}/>  
               }
               
             </div>
