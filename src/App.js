@@ -81,8 +81,8 @@ class App extends Component {
       this.setState({loginURL})
       if(!window.location.href.includes("access_token")) {
         setTimeout(() => {
-          window.location.replace(loginURL);
-        },100)
+          window.location.href = loginURL;
+        },500)
       }
    
 
@@ -105,8 +105,8 @@ class App extends Component {
     },(err) => {
       localStorage.setItem('token','')
       setTimeout(() => {
-        window.location.replace(loginURL);
-      },100)
+        window.location.href = loginURL;
+      },500)
       
     })
 
