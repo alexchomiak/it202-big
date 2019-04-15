@@ -1,0 +1,100 @@
+$mdc-theme-primary: "#00e676";
+$queryWidth : $mobilebreakpoint - 4rem;
+
+.queryBuilder {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem 4rem;
+    margin: 0rem 0rem;
+    background-color: $header-background;
+    font-size: $s-size;
+    font-weight: 350;
+}
+
+.queryForm {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    align-items: center;
+}
+
+.queryTextfield {
+    width: $queryWidth;
+    padding: 0rem 2rem;
+    margin-bottom: .5rem;
+}
+
+.chipsetcontainer {
+    width:$queryWidth;
+}
+
+.queryButton {
+    width: $queryWidth;
+    outline: none !important;
+ 
+}
+
+.queryHeader {
+    margin: .5rem 0rem;
+    text-align: center;
+}
+
+.popularitySlider {
+    color: black;
+    font-size: $s-size;
+    margin: 1rem 0rem;
+    width: $queryWidth;
+}
+
+.checkBoxes {
+    margin: 1rem 0rem;
+    display: flex;
+    
+}
+
+.queryCheckbox {
+    margin: 0rem 1rem;
+}
+
+.queryError {
+    font-size: $s-size;
+    font-style: italic;
+    font-weight: 250;
+}
+
+@media (max-width: $mobilebreakpoint) {
+    $queryWidth: 20rem;
+    .queryBuilder {
+        padding: 2rem 2rem;
+        margin: 1rem 0rem;
+    }
+    
+    .queryTextfield {
+        width: $queryWidth;
+        padding: 0rem 2rem;
+    }
+    
+    .chipsetcontainer {
+        width:$queryWidth;
+    }
+    
+    .queryButton {
+        width: $queryWidth;
+    }
+    
+    
+    .queryHeader {
+        margin: 1rem 0rem;
+    }
+    
+    .popularitySlider {
+        margin: 1rem 0rem;
+        width: $queryWidth;
+    }
+    
+    .checkBoxes {
+        margin: 1rem 0rem;
+    }
+}

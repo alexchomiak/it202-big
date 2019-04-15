@@ -1,0 +1,39 @@
+.header {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    background: $header-background;
+    color: $primaryColor;
+    align-items: center;
+}
+
+.headerlogo {
+    width: 5rem;
+    height: 5rem;
+}
+
+.header-title {
+    margin: 0;
+    margin-left: 2.0rem;
+    font-size: 1.6rem;
+
+}
+
+.header-subtitle {
+    margin: 0;
+    margin-left: 2rem;
+    font-size: 1rem;
+    font-style: italic;
+    font-weight: 400;
+}
+
+@media (max-width: $mobilebreakpoint) {
+    .headerlogo {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    .header-title {
+        font-size: 1.2rem;
+    }
+}
