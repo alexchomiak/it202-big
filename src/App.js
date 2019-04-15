@@ -44,7 +44,7 @@ class App extends Component {
     var loginURL
 
     console.log(this.access_token)
-    if(this.access_token === '') {
+    if(this.access_token === '' || this.access_token === undefined || this.access_token === null) {
       var url = "https://accounts.spotify.com/authorize?"
       
       if (process.env.PUBLIC_URL === "") {
