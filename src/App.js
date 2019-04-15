@@ -42,8 +42,8 @@ class App extends Component {
   constructor() {
     super()
     var loginURL
-    this.access_token = localStorage.getItem('token')
-
+    this.access_token = localStorage.getItem("token")
+    
     //console.log(access_token)
     if( this.access_token === null || this.access_token === "" || this.access_token === undefined) {
       var url = "https://accounts.spotify.com/authorize?"
@@ -101,7 +101,7 @@ class App extends Component {
        
       
     },(err) => {
-      localStorage.setItem('token','')
+      localStorage.setItem("token","")
       setTimeout(() => {
         window.location.href = loginURL;
       },500)
