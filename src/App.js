@@ -44,7 +44,7 @@ class App extends Component {
     var loginURL
     this.access_token = localStorage.getItem("token")
     
-    //console.log(access_token)
+    console.log("loaded token " + this.access_token)
     if( this.access_token === null || this.access_token === "" || this.access_token === undefined) {
       var url = "https://accounts.spotify.com/authorize?"
       
