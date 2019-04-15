@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import createHistory from 'history/createBrowserHistory'
 import Spotify from 'spotify-web-api-js'
 import logo from './logo.svg';
-import Home from './Home'
 import { Switch,BrowserRouter as Router,Redirect, Route, Link } from "react-router-dom";
 import Builder from './Builder'
 import QueryBuilder from './QueryBuilder';
@@ -38,6 +37,8 @@ class App extends Component {
     //console.log(hashParams);
     return hashParams;
   }
+
+  loginUrl
 
   constructor() {
     super()
@@ -75,15 +76,8 @@ class App extends Component {
 
 
       loginURL = url;
+      this.loginUrl = loginURL
       this.login = true;
-      this.setState({loginURL})
-      if(!window.location.href.includes("access_token")) {
-        setTimeout(() => {
-          window.location.href = loginURL;
-        },500)
-      }
-   
-
   }
   else {
   
@@ -168,6 +162,7 @@ class App extends Component {
   
 
   render() {
+    if(!this.login || window.location.href.includes("access_token"))
     return (
       <Router basename={process.env.PUBLIC_URL} history={history} >
         <div>
@@ -211,6 +206,13 @@ class App extends Component {
       
       
     )
+    else {
+      return (
+        <div>
+          <a href={this.loginUrl}> Login to spotify! </a>
+        </div>
+      )
+    }
   }
 }
 
