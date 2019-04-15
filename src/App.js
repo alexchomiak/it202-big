@@ -179,17 +179,15 @@ class App extends Component {
                 console.log(params)
                 this.setState(() => ({userCode: params.access_token}))
               }
-             
-
                return (<Redirect to= {"/"}/>)
             }}/>
 
           ) : (
 
             <div>
-              {/*
-              <Route  exact path={ "/"} component={() => (<Home userCode={this.state.userCode}/>)}/>  
-              */}
+              {
+              <Route  exact path={ "/"} component={() => (<h1>home</h1>)}/>  
+              }
               
             </div>
 
