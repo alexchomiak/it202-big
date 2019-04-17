@@ -17,7 +17,7 @@ export default class QueryBuilder extends Component {
     keywords: [],
     popMin: 0,
     popMax: 100,
-    includeLibary: true,
+    includeLibrary: true,
     includeExplicit: true,
     errorLabel: ""
   }
@@ -37,8 +37,8 @@ export default class QueryBuilder extends Component {
     console.log(this.state.keywords)
   }
 
-  toggleIncludeLibary = () => {
-    this.setState(() => ({includeLibary: !this.state.includeLibary}))
+  toggleIncludeLibrary = () => {
+    this.setState(() => ({includeLibrary: !this.state.includeLibrary}))
   }
 
   toggleExplicit = () => {
@@ -64,7 +64,7 @@ export default class QueryBuilder extends Component {
       keywords: this.state.keywords,
       popMin: this.state.popMin,
       popMax: this.state.popMax,
-      includeLibary: this.state.includeLibary,
+      includeLibrary: this.state.includeLibrary,
       includeExplicit: this.state.includeExplicit
     }
 
@@ -129,7 +129,7 @@ export default class QueryBuilder extends Component {
 
   <div className="checkBoxes">
   <Theme use="textColor">
-  <Checkbox className="queryCheckbox" onChange={this.toggleIncludeLibary} checked={this.state.includeLibary}>Include tracks in your library</Checkbox>
+  <Checkbox className="queryCheckbox" onChange={this.toggleIncludeLibrary} checked={this.state.includeLibrary}>Include tracks in your library</Checkbox>
   <Checkbox className="queryCheckbox" onChange={this.toggleExplicit} checked={this.state.includeExplicit}>Include Explicit Tracks</Checkbox>
   </Theme>
      

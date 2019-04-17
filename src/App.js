@@ -19,14 +19,12 @@ const history = createHistory({
   basename: process.env.PUBLIC_URL
 })
 class App extends Component {
-  state = {
-    userCode : null,
-    loginURL: null,
-    login: false,
-    user: null
-  }
+  
   access_token 
 
+  state = {
+    user: null,
+  }
   getHashParams() {
     var hashParams = {};
     var e, r = /([^&;=]+)=?([^&;]*)/g,
@@ -38,7 +36,8 @@ class App extends Component {
     return hashParams;
   }
 
-  loginUrl
+  login = false;
+  loginUrl = null
 
   constructor() {
     super()
@@ -48,7 +47,7 @@ class App extends Component {
     console.log("loaded token " + this.access_token)
     if( this.access_token === null || this.access_token === "" || this.access_token === undefined) {
       var url = "https://accounts.spotify.com/authorize?"
-      
+      console.log('no token found')
       if (process.env.PUBLIC_URL === "") {
           //url = "http%3A%2F%2Flocalhost:3000%2Fcallback"
           url += queryString.stringify({
@@ -74,12 +73,12 @@ class App extends Component {
 
 
 
-
-      loginURL = url;
-      this.loginUrl = loginURL
-      this.login = true;
+     
+      this.loginURL = url;
+       this.login = true;
   }
   else {
+      this.login = false;
   
       spotifyApi.setAccessToken(this.access_token)
       spotifyApi.getMe().then((me) => {
@@ -170,16 +169,21 @@ class App extends Component {
           <NavBar/>
           
 
-          <Route path="/test" component={Builder}/>
+
+          <Route path="/build" component={() => {
+            return <Builder api={spotifyApi} user={this.state.user}/>
+          }}/>
+
+
           { window.location.href.includes("access_token") ? (
             <Route  exact path={"/"} component={() => {
               const params = this.getHashParams()
-              if(this.state.userCode === null) {
-                this.access_token = params.access_token
-                localStorage.setItem("token",params.access_token)
-                console.log(params)
-                this.setState(() => ({userCode: params.access_token}))
-              }
+              
+              this.access_token = params.access_token
+              localStorage.setItem("token",params.access_token)
+              console.log(params)
+              this.setState(() => ({userCode: params.access_token}))
+              
                return (<Redirect to= {"/"}/>)
             }}/>
 
@@ -209,8 +213,12 @@ class App extends Component {
     else {
       return (
         <div>
-          <a href={this.loginUrl}> Login to spotify! </a>
+          {console.log(this.loginURL)}
+           
+        <a href={this.loginURL} > Login </a>
         </div>
+       
+        
       )
     }
   }

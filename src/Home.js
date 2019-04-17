@@ -21,7 +21,7 @@ export default class Home extends Component {
         me: {},
         imgSrc: "",
         tracksQuery: [],
-        progress: {
+        progress: {l
             value: 100,
             max: 100
         },
@@ -139,70 +139,7 @@ export default class Home extends Component {
         })
     }
 
-    createPlaylistFromTopTrackFrequencies = async (playlistName,numberOfPlaylists) => {
-        return this.getPlaylists(playlistName,numberOfPlaylists).then((res) => {
-
-            var doStuff = async () => {
-                let playlists = res;
-                var promises = []    
-                var playlistTracks = []
-                const delay = (interval) => new Promise(resolve => setTimeout(resolve, interval));
-
-                for(var i = 0; i < playlists.length; i++) {
-                    var playlist = playlists[i];
-                    await this.setState( () => ({
-                        progress: {
-                            value: i + 1,
-                            max: playlists.length
-                        }
-                    }))
-                    await delay(125)
-                    promises.push(spotifyApi.getPlaylistTracks(playlist.id).then((res) => {
-                        playlistTracks = [...playlistTracks, ...res.items ]
-                        console.log(playlistTracks)
-                    }, async () => {
-                        await delay(125)
-                        i--;
-                    }))
-                    
-                }
-                
-
     
-                return Promise.all(promises).then(() => {
-                    var arrayOfPlaylistTracks = Array.from(playlistTracks, item => item.track)
-
-                    var freqs = new Map()
-                    var uriToTrack = new Map();
-                    console.log(arrayOfPlaylistTracks)
-                    arrayOfPlaylistTracks.forEach(track => {
-                            if(track === null || track.uri === null) return
-                            if(freqs.get(track.uri) === undefined) {
-                                freqs.set(track.uri,1)
-                            }
-                            else freqs.set(track.uri,freqs.get(track.uri) + 1)
-
-                            if(uriToTrack.get(track.uri) === undefined) uriToTrack.set(track.uri,track)
-
-                        
-                    })
-
-                    var mapAsc = new Map([...freqs.entries()].sort((a,b) => {
-                        return a[1] < b[1] ? 1: a[1] > b[1] ? -1 : 0
-                    }));
-
-                    this.generatePlayListFromTracks(mapAsc, playlistName)
-
-                    return mapAsc
-                    
-                })
-            }
-
-            return doStuff()
-            
-        })
-    }
-
     getPlaylists = async (name,limit) => {
         var initialValue = 0;
         var promises = []
