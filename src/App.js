@@ -107,59 +107,6 @@ class App extends Component {
  
   }
 
-
-  componentDidMount() {
-    
-  }
-  
-  componentDidUpdate() {
-    /*
-   if(this.state.userCode === null) {
-     this.setState({login: true})
-   }
-
-  if(this.state.userCode !== null) {
-      spotifyApi.setAccessToken(this.state.userCode)
-
-      spotifyApi.getMe().then((me) => {
-          this.setState(() => ({
-              me
-          }))
-
-          console.log(me.id)
-
-          console.log("attempting playlist creation -------")
-          
-          
-
-          
-          console.log("------------------------------------")
-
-      } )
-
-      console.log('spotify loaded')
-      console.log(this.state.username)
-
-      /*
-      spotifyApi.getArtist()
- 
-      
-
-      spotifyApi.getAlbum('0y4nzndpCMRS5wj3lkWl8A').then((album) => {
-          //console.log(album)
-          this.setState({imgSrc: album.images[2].url})
-      })
-  
-
-      spotifyApi.getArtist("3ddT1Q3KQAm1G7UcIfz5KJ").then((res) => {
-          console.log(res)
-      })
-      */
-     
-  }
-  
-  
-
   render() {
     if(!this.login || window.location.href.includes("access_token"))
     return (
@@ -183,7 +130,7 @@ class App extends Component {
               localStorage.setItem("token",params.access_token)
               console.log(params)
               this.setState(() => ({userCode: params.access_token}))
-              
+                this.login = false;
                return (<Redirect to= {"/"}/>)
             }}/>
 
