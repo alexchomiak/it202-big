@@ -31,6 +31,7 @@ class App extends Component {
 
   state = {
     user: null,
+    apikey: ""
   }
   getHashParams() {
     var hashParams = {};
@@ -54,7 +55,10 @@ class App extends Component {
     db.table('token').toArray().then((tb) => {
       console.log(tb)
       if(tb.length === 0) this.access_token = ""
-      else this.access_token = tb[0].usertoken
+      else  {
+        this.access_token = tb[0].usertoken
+        this.setState({apikey: tb[0].usertoken})
+      }
 
 
       console.log("loaded token " + this.access_token)
@@ -162,7 +166,7 @@ class App extends Component {
                 console.log(tb)
                 console.log(params)
              
-                this.setState({login: false})
+                this.setState({login: false,apikey: params.access_token})
 
                 
               })
@@ -185,7 +189,7 @@ class App extends Component {
               {
               <Route  exact path={ "/"} component={() => {
                 return (
-                  <Home apiToken={this.access_token}/>
+                  <Home apiToken={this.state.apikey}/>
                 )
               }}/>  
               }
