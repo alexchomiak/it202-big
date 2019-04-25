@@ -10,12 +10,15 @@
     font-weight: 350;
     padding: 2rem 4rem;
    border-radius: .5rem;
+   word-wrap:break-word;
+    word-break: break-all;
 }
 
 .home--token {
     font-size: .7rem;
     font-weight: 400;
     word-wrap:break-word;
+    word-break: break-all;
 }
 .home--welcome {
     font-size: 2rem;
