@@ -10,7 +10,7 @@ export default class Home extends Component {
                 <h3 className="home--prompt"> Click the build tab to begin building your playlist!</h3>
                 <h3 className="home--prompt"> Your Specific Spotify API token for this application (stored in IndexedDB):</h3>
                 <p className="home--token"> {this.props.apiToken} </p>
-                <p className="home--token"> (refresh if token not showing due to bug with spotify api)</p>
+                <p className="home--token"> (refresh if token not showing due to bug with spotify api not immediately loading key)</p>
             </div>
                
             </div>
