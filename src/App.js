@@ -173,7 +173,10 @@ class App extends Component {
               this.setState(() => ({userCode: params.access_token}))
               this.access_token = params.access_token
               spotifyApi.setAccessToken(params.access_token)
-
+              spotifyApi.getMe().then((me) => {
+                this.setState({user: me})
+              }) 
+        
               return (<Redirect to= {"/"}/>)
 
               
