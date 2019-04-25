@@ -54,7 +54,7 @@ ReactDOM.render(
           }}>
             <Router basename={process.env.PUBLIC_URL}>
       
-                 {console.log('fuck github pages ' + process.env.PUBLIC_URL)}
+                 {}
                     <App />
                 </Router>
         </ThemeProvider>
