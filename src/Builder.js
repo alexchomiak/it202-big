@@ -8,29 +8,9 @@ var spotifyApi = new Spotify();
 export default class Builder extends Component {
     state = {
         searchQuery: null,
-        userTracks: null
     }
 
-    getUserTracks = async () => {
-      var promises = []
-      var tracks = []
-      var parse = true;
-      var initialValue = 0;
-
-      
-      
-
-      while(parse) {
-        await this.props.api.getMySavedTracks({limit:50,offset:initialValue}).then((list) => {
-          let userTracks = list.items;
-          tracks = [...tracks, ...userTracks]
-          if(list.total < (initialValue * 50) + 50) parse = false;
-        })
-      }
-   
-      return tracks;
-     
-    }
+    
 
     handleQuery = (query) => {
       console.log('building query -----')
@@ -38,14 +18,9 @@ export default class Builder extends Component {
       console.log('finished query -----')
 
       
-        if(this.state.userTracks === null) {
-          this.getUserTracks().then((tracks) => {
-            console.log(tracks)
-            this.setState(() => ({userTracks:tracks, searchQuery: query}))
-          })
-        } else {
-          this.setState(() =>({searchQuery: query}))
-        }
+       
+      this.setState(() =>({searchQuery: query}))
+        
         
     }
 

@@ -5,7 +5,12 @@ export default function NavBar() {
     <div className="nav-bar">
       <NavLink exact={true} className="nav-link" activeClassName="nav-link-is-active" to="/"> Home </NavLink>
 	<NavLink exact={true} className="nav-link" activeClassName="nav-link-is-active" to="/build"> Build </NavLink>
-			<NavLink exact={true} className="nav-link" activeClassName="nav-link-is-active" to="/about"> About </NavLink>
+			<NavLink exact={true} className="nav-link" activeClassName="nav-link-is-active" to="/dad"> Dad Jokes API </NavLink>
+      <NavLink exact={true} className="nav-link" activeClassName="nav-link-is-active" to="/geo"> Geolocation </NavLink>
+
+      <NavLink exact={true} className="nav-link" activeClassName="nav-link-is-active" to="/about"> About </NavLink>
+
+
     </div>
   )
 }

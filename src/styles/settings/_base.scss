@@ -63,9 +63,31 @@ hr {
     
   }
 
+  .login {
+    margin: 0 auto;
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .loginPrompt {
+    color: white;
+    margin: 1rem;
+  }
   @media (max-width: $mobilebreakpoint) {
     .container {
       padding: 0 .3rem;
+    }
+    .login {
+      margin: 0 auto;
+      margin-top: 1rem;
+      text-align: center;
+    }
+  
+
+    .loginPrompt {
+      color: white;
+      margin: .5rem;
+      font-size: 1rem
     }
   }
   

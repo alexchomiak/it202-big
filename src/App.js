@@ -9,7 +9,14 @@ import Builder from './Builder'
 import QueryBuilder from './QueryBuilder';
 import Header from './Header'
 import NavBar from './NavBar'
-
+import Home from './Home'
+import { Button } from '@rmwc/button';
+import Dexie from 'dexie';
+import Geo from './Geo'
+import Dad from './Dad'
+import About from './About'
+const db = new Dexie('mydatabase')
+db.version(1).stores({token: '++id,usertoken'})
 
 
 var spotifyApi = new Spotify()
@@ -41,10 +48,16 @@ class App extends Component {
 
   constructor() {
     super()
+
     var loginURL
-    this.access_token = localStorage.getItem("token")
-    
-    console.log("loaded token " + this.access_token)
+    //db.table('token').clear()
+    db.table('token').toArray().then((tb) => {
+      console.log(tb)
+      if(tb.length === 0) this.access_token = ""
+      else this.access_token = tb[0].usertoken
+
+
+      console.log("loaded token " + this.access_token)
     if( this.access_token === null || this.access_token === "" || this.access_token === undefined) {
       var url = "https://accounts.spotify.com/authorize?"
       console.log('no token found')
@@ -75,10 +88,10 @@ class App extends Component {
 
      
       this.loginURL = url;
-       this.login = true;
+       this.setState({login: true})
   }
   else {
-      this.login = false;
+    this.setState({login: false})
   
       spotifyApi.setAccessToken(this.access_token)
       spotifyApi.getMe().then((me) => {
@@ -94,6 +107,7 @@ class App extends Component {
        
       
     },(err) => {
+      db.table('token').clear().then((res) => {})
       localStorage.setItem("token","")
       setTimeout(() => {
         window.location.href = loginURL;
@@ -104,11 +118,19 @@ class App extends Component {
     
     
   }
+    })
+    //this.access_token = localStorage.getItem("token")
+    
+    
+
+    
  
   }
 
+
+
   render() {
-    if(!this.login || window.location.href.includes("access_token"))
+    if(!this.state.login || window.location.href.includes("access_token"))
     return (
       <Router basename={process.env.PUBLIC_URL} history={history} >
         <div>
@@ -125,28 +147,60 @@ class App extends Component {
           { window.location.href.includes("access_token") ? (
             <Route  exact path={"/"} component={() => {
               const params = this.getHashParams()
+              db.table('token').clear().then((res) => {})
+
               
+
               this.access_token = params.access_token
               localStorage.setItem("token",params.access_token)
-              console.log(params)
+
+              db.token.add({usertoken: params.access_token})
+
+            
+
+              db.table('token').toArray().then((tb) => {
+                console.log(tb)
+                console.log(params)
+             
+                this.setState({login: false})
+
+                
+              })
               this.setState(() => ({userCode: params.access_token}))
-                this.login = false;
-               return (<Redirect to= {"/"}/>)
+              this.access_token = params.access_token
+              spotifyApi.setAccessToken(params.access_token)
+
+              return (<Redirect to= {"/"}/>)
+
+              
+            
+
+             
             }}/>
 
+           
           ) : (
 
             <div>
               {
-              <Route  exact path={ "/"} component={() => (<h1>home {this.access_token}</h1>)}/>  
+              <Route  exact path={ "/"} component={() => {
+                return (
+                  <Home apiToken={this.access_token}/>
+                )
+              }}/>  
               }
               
             </div>
 
           )}
           
-
-
+              
+          { /* routes */ !this.state.login && (<div>
+              <Route exact path="/geo" component={Geo}/>
+              <Route exact path="/dad" component={Dad}/>
+              <Route exact path="/about" component={About}/>
+              </div>
+          )}
          
         
           
@@ -160,10 +214,16 @@ class App extends Component {
     else {
       return (
         <div>
+                    <Header/>
+
+           <div className="container login">
           {console.log(this.loginURL)}
-           
-        <a href={this.loginURL} > Login </a>
+        <h3 className="loginPrompt">  Please login with Spotify to use this application.</h3>
+        <Button  raised onClick={() => {window.location.href = this.loginURL}} style={{"width":"40%"}} label="Login"  />
+
         </div>
+        </div>
+       
        
         
       )

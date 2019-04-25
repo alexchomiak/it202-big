@@ -16,9 +16,7 @@ export default class GeneratePlaylist extends Component {
     userTracks
     componentDidMount = () => {
       this.query = this.props.query
-      this.userTracks = Array.from(this.props.userTracks,track => track.track.uri)
 
-      console.log(this.userTracks)
       var queryString = ""
       
       this.query.keywords.forEach((keyword,index) => {
@@ -176,7 +174,7 @@ export default class GeneratePlaylist extends Component {
                         
                         if(!this.query.includeExplicit && track.explicit) trackValid = false;
 
-                        if(!this.query.includeLibrary && this.userTracks.includes(track.uri)) trackValid = false;
+                        //if(!this.query.includeLibrary && this.userTracks.includes(track.uri)) trackValid = false;
                         
                       }
 

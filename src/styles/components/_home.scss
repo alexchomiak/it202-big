@@ -1,0 +1,28 @@
+.home {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    
+    margin: 0rem 0rem;
+    background-color: $header-background;
+    font-size: $s-size;
+    font-weight: 350;
+    padding: 2rem 4rem;
+   border-radius: .5rem;
+}
+
+.home--token {
+    font-size: .7rem;
+    font-weight: 400;
+}
+.home--welcome {
+    font-size: 2rem;
+    font-weight: 500;
+
+}
+.home--prompt {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+}

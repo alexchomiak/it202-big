@@ -54,7 +54,7 @@ export default class QueryBuilder extends Component {
 
   handleQuery = () => {
     if(this.state.keywords.length === 0) {
-      this.setState(() => ({errorLabel: "There must be more than one keyword for a playlist to be made."}))
+      this.setState(() => ({errorLabel: "There must be atleast one keyword for a playlist to be made."}))
       return;
     }
 
@@ -86,7 +86,7 @@ export default class QueryBuilder extends Component {
 
 <div className="queryHeader">
 <h3 >
-      Create a playlist with criteria:
+      Create a playlist using Spotify's API
     </h3>
 
     <p className="queryError">{this.state.errorLabel}</p>
@@ -129,8 +129,12 @@ export default class QueryBuilder extends Component {
 
   <div className="checkBoxes">
   <Theme use="textColor">
+  { /*
   <Checkbox className="queryCheckbox" onChange={this.toggleIncludeLibrary} checked={this.state.includeLibrary}>Include tracks in your library</Checkbox>
+*/}
+
   <Checkbox className="queryCheckbox" onChange={this.toggleExplicit} checked={this.state.includeExplicit}>Include Explicit Tracks</Checkbox>
+  
   </Theme>
      
   </div>
